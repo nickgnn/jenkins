@@ -4,7 +4,7 @@ properties([disableConcurrentBuilds()])
 
 pipeline {
     agent {
-        label 'master'
+        label 'node2'
         }
     options {
         buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
@@ -13,17 +13,17 @@ pipeline {
     stages {
         stage("First step - hostname") {
             steps {
-                sh 'ssh root@192.168.1.52 \'hostname\''
+                sh 'ssh gnn@192.168.1.52 \'hostname\''
             }
         }
         stage("Second step - uptime") {
             steps {
-                sh 'ssh root@192.168.1.52 \'uptime\''
+                sh 'ssh gnn@192.168.1.52 \'uptime\''
             }
         }
         stage("Third step - ip a") {
             steps {
-                sh 'ssh root@192.168.1.52 \'ip a\''
+                sh 'ssh gnn@192.168.1.52 \'ip a\''
             }
         }
     }
