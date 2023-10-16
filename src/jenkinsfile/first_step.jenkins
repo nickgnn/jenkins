@@ -11,17 +11,17 @@ pipeline {
         timestamps()
     }
     stages {
-        stage("First step") {
+        stage("First step - hostname") {
             steps {
                 sh 'ssh root@192.168.1.52 \'hostname\''
             }
         }
-        stage("Second step") {
+        stage("Second step - uptime") {
             steps {
                 sh 'ssh root@192.168.1.52 \'uptime\''
             }
         }
-        stage("Third step") {
+        stage("Third step - ip a") {
             steps {
                 sh 'ssh root@192.168.1.52 \'ip a\''
             }
