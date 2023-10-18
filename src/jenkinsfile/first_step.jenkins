@@ -3,28 +3,35 @@
 properties([disableConcurrentBuilds()])
 
 pipeline {
+
     agent {
-        label 'node2'
-        }
+        label 'node-4'
+    }
+
     options {
         buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
         timestamps()
     }
+
     stages {
+
         stage("First step - hostname") {
             steps {
-                sh 'ssh gnn@192.168.1.52 \'hostname\''
+                sh 'ssh gnn@192.168.1.120 \'hostname\''
             }
         }
+
         stage("Second step - uptime") {
             steps {
-                sh 'ssh gnn@192.168.1.52 \'uptime\''
+                sh 'ssh gnn@192.168.1.120 \'uptime\''
             }
         }
+
         stage("Third step - ip a") {
             steps {
-                sh 'ssh gnn@192.168.1.52 \'ip a\''
+                sh 'ssh gnn@192.168.1.120 \'ip a\''
             }
         }
+
     }
 }
